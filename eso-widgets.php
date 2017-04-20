@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: ESO Widgets
- * Plugin URI:  http://www.elderscrollsbote.de/
  * Description: ESO Widgets enables you to embed skill bars into your posts and adds skill tooltips to your site.
  * Author:      ElderScrollsBote.de
  * Author URI:  http://www.elderscrollsbote.de/
