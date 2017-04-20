@@ -1,0 +1,41 @@
+.eso-widgets-build {
+    max-width: 405px;
+    margin: 0 auto
+}
+.eso-widgets-bar {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0
+}
+.eso-widgets-bar li {
+    border: 1px solid transparent;
+    flex: 0 0 16%;
+    max-width: 64px;
+}
+.eso-widgets-bar li.eso-widgets-ultimate {
+    flex: 0 0 20%;
+    max-width: 84px;
+    padding-left: 4%
+}
+.eso-widgets-bar img {
+    border: 2px solid #585230;
+    background-color: #777;
+    width: 100%;
+    height: auto;
+    max-width: 48px
+}
+.eso-widgets-bar a {
+    display: block;
+    position: relative;
+    max-width: 52px;
+}
+.eso-widgets-bar a span {
+    color: #fff;
+    font-size: 10px;
+    position: absolute;
+    right: 7px;
+    bottom: 0;
+}
