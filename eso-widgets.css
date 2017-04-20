@@ -14,6 +14,9 @@
     border: 1px solid transparent;
     flex: 0 0 16%;
     max-width: 64px;
+    list-style: none !important;
+    margin: 0!important;
+    padding: 0!important;
 }
 .eso-widgets-bar li.eso-widgets-ultimate {
     flex: 0 0 20%;
@@ -25,7 +28,9 @@
     background-color: #777;
     width: 100%;
     height: auto;
-    max-width: 48px
+    max-width: 48px;
+    margin: 0!important;
+    padding: 0!important;
 }
 .eso-widgets-bar a {
     display: block;
