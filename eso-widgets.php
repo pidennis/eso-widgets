@@ -1,11 +1,27 @@
 <?php
-/**
- * Plugin Name: ESO Widgets
- * Description: ESO Widgets enables you to embed skill bars into your posts and adds skill tooltips to your site.
- * Author:      ElderScrollsBote.de
- * Author URI:  http://www.elderscrollsbote.de/
- * Version:     1.0.0
- */
+/*
+Plugin Name: ESO Widgets
+Description: ESO Widgets enables ingame-like tooltips and skill bars for Elder Scrolls Online on your site.
+Version:     1.0
+Author:      ElderScrollsBote.de
+Author URI:  http://www.elderscrollsbote.de/
+License:     GPL2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+ESO Widgets is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+
+ESO Widgets is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ESO Widgets. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+*/
+
 defined( 'ABSPATH' ) || exit;
 
 function eso_widgets_script()
