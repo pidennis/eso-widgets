@@ -37,6 +37,9 @@
     position: relative;
     max-width: 52px;
 }
+.eso-widgets-bar a, .eso-widgets-bar a:hover {
+    text-decoration: none;
+}
 .eso-widgets-bar a span {
     color: #fff;
     font-size: 10px;
