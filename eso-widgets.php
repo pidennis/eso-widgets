@@ -44,6 +44,19 @@ function eso_widgets_style()
     }
 }
 
+function eso_widgets_link_target()
+{
+	// You can force all skill links to open in a new tab.
+	// Just add the following line to the functions.php of your theme:
+	// add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );
+
+	if ( apply_filters( 'eso_widgets_open_in_new_tabs', false ) ) {
+		return ' target="_blank"';
+	}
+
+	return '';
+}
+
 function eso_widgets_embed_handler( $matches, $attr, $url )
 {
     if ( count( $matches ) < 2 ) {
@@ -58,6 +71,8 @@ function eso_widgets_embed_handler( $matches, $attr, $url )
         return '<p>The build link seems to be incomplete (<a href="' . esc_url( $url ) . '">link</a>).';
     }
 
+    $linkTarget = eso_widgets_link_target();
+
     $html = '';
     for ( $bar = 0; $bar < 2; ++$bar ) {
         $html .= '<ul class="eso-widgets-bar">';
@@ -69,7 +84,7 @@ function eso_widgets_embed_handler( $matches, $attr, $url )
             $hotkey = '<span>' . ( $isUltimate ? 'R' : ( $slot + 1 ) ) . '</span>';
 
             $link = $skillId > 0
-                ? '<a href="' . esc_url( 'http://www.elderscrollsbote.de/skill=' . $skillId ) . '"><img src="//www.elderscrollsbote.de/esodb/images/skills/' . $skillId . '.png" alt="Slot ' . ( $slot + 1 ) . '">' . $hotkey . '</a>'
+                ? '<a href="' . esc_url( 'http://www.elderscrollsbote.de/skill=' . $skillId ) . '"' . $linkTarget . '><img src="//www.elderscrollsbote.de/esodb/images/skills/' . $skillId . '.png" alt="Slot ' . ( $slot + 1 ) . '">' . $hotkey . '</a>'
                 : '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="No skill selected">';
             $html .= '<li' . ( $isUltimate ? ' class="eso-widgets-ultimate"' : '' ) . '>' . $link . '</li>';
         }
@@ -87,7 +102,7 @@ function eso_widgets_embed_handler( $matches, $attr, $url )
 
     $className = ( isset( $classes[ $matches[1][1] ] ) ) ? '<em>' . $classes[ $matches[1][1] ] . '</em>' : '';
 
-    return '<div class="eso-widgets-build"><p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '">' . $caption . ' &raquo;</a></p>' . $html . '</div>';
+    return '<div class="eso-widgets-build"><p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '"' . $linkTarget . '>' . $caption . ' &raquo;</a></p>' . $html . '</div>';
 }
 
 add_action( 'wp_head', 'eso_widgets_script' );
