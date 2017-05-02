@@ -2,6 +2,7 @@
   "name"        : "pidennis/eso-widgets",
   "description" : "A WordPress plugin that allows you to add tooltips and skill bars for Elder Scrolls Online to your site.",
   "type"        : "wordpress-plugin",
+  "license"     : "GPL-2.0",
   "require"     : {
     "php": ">=5.0"
   }
