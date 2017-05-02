@@ -42,8 +42,8 @@ final class ESOWidgets
 
 	public function addScript()
 	{
-		// Limit browser side caching to max one day
-		echo '<script async src="' . esc_url( '//www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . strtotime( 'today midnight' ) ) . '"></script>';
+		// Limit browser side caching to max two days
+		echo '<script async src="' . esc_url( '//www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . strtotime( 'tomorrow 23:59' ) ) . '"></script>';
 	}
 
 	public function addStyle()
