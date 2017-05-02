@@ -83,12 +83,25 @@ final class ESOWidgets
 		$parts        = explode( '-', $matches[1] );
 		$activeSkills = explode( ':', array_pop( $parts ) );
 
-		if ( count( $activeSkills ) !== 12 ) {
+		if ( ! is_array( $activeSkills ) || count( $activeSkills ) !== 12 ) {
 			return '<p>The build link seems to be incomplete (<a href="' . esc_url( $url ) . '">link</a>).';
 		}
 
+		// Not worth to add the overhead of a language files for this...
+		$lang = ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) ? 'de' : 'en';
+		$caption = ( 'de' === $lang ) ? 'Zeige gesamten Build': 'Show full build';
+		$className = $this->getClassName( $matches[1][1], $lang );
+
 		$linkTarget = $this->getLinkTarget();
 
+		return '<div class="eso-widgets-build">
+					<p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '"' . $linkTarget . '>' . $caption . ' &raquo;</a></p>
+					' . $this->activeSkills2Html( $activeSkills, $linkTarget ) . '
+				</div>';
+	}
+
+	private function activeSkills2Html( array $activeSkills, $linkTarget )
+	{
 		$html = '';
 		for ( $bar = 0; $bar < 2; ++ $bar ) {
 			$html .= '<ul class="eso-widgets-bar">';
@@ -105,29 +118,15 @@ final class ESOWidgets
 			$html .= '</ul>';
 		}
 
-		$classes = array(
-			'a' => 'Dragonknight',
-			'b' => 'Nightblade',
-			'c' => 'Sorcerer',
-			'd' => 'Templar',
-			'e' => 'Warden'
-		);
-		$caption = 'Show full build';
+		return $html;
+	}
 
-		// Not worth to add the overhead of language files for this...
-		if ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) {
-			$caption = 'Zeige gesamten Build';
-			$classes = array(
-				'a' => 'Drachenritter',
-				'b' => 'Nachklinge',
-				'c' => 'Zauberer',
-				'd' => 'Templer',
-				'e' => 'Hüter'
-			);
-		}
+	private function getClassName( $key, $lang )
+	{
+		$classes = 'de' === $lang
+			? array( 'a' => 'Drachenritter', 'b' => 'Nachklinge', 'c' => 'Zauberer', 'd' => 'Templer', 'e' => 'Hüter' )
+			: array( 'a' => 'Dragonknight', 'b' => 'Nightblade', 'c' => 'Sorcerer', 'd' => 'Templar', 'e' => 'Warden' );
 
-		$className = ( isset( $classes[ $matches[1][1] ] ) ) ? '<em>' . $classes[ $matches[1][1] ] . '</em>' : '';
-
-		return '<div class="eso-widgets-build"><p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '"' . $linkTarget . '>' . $caption . ' &raquo;</a></p>' . $html . '</div>';
+		return ( isset( $classes[ $key ] ) ) ? '<em>' . $classes[ $key ] . '</em>' : '';
 	}
 }
