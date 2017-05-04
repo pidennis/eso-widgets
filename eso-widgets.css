@@ -47,3 +47,12 @@
     right: 7px;
     bottom: 0;
 }
+.eso-widgets-details {
+    display: flex;
+}
+.eso-widgets-armor, .eso-widgets-attributes {
+    flex: 0 0 50%;
+}
+.eso-widgets-attributes {
+    text-align: right;
+}

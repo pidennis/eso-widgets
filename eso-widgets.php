@@ -94,9 +94,16 @@ final class ESOWidgets
 
 		$linkTarget = $this->getLinkTarget();
 
+		// If there are points distributed to armor and attributes we will show them
+		$details = $this->getArmor( $matches[1] ) . ' ' . $this->getAttributes( $matches[1] );
+		if ( ! empty( $details ) ) {
+			$details = '<p class="eso-widgets-details">' . $details . '</p>';
+		}
+
 		return '<div class="eso-widgets-build">
 					<p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '"' . $linkTarget . '>' . $caption . ' &raquo;</a></p>
 					' . $this->activeSkills2Html( $activeSkills, $linkTarget ) . '
+					' . $details . '
 				</div>';
 	}
 
@@ -128,5 +135,37 @@ final class ESOWidgets
 			: array( 'a' => 'Dragonknight', 'b' => 'Nightblade', 'c' => 'Sorcerer', 'd' => 'Templar', 'e' => 'Warden' );
 
 		return ( isset( $classes[ $key ] ) ) ? '<em>' . $classes[ $key ] . '</em>' : '';
+	}
+
+	private function getArmor( $hashPart )
+	{
+		if ( strlen( $hashPart ) < 5 ) {
+			return '';
+		}
+
+		$light  = intval( $hashPart[2] );
+		$medium = intval( $hashPart[3] );
+		$heavy  = intval( $hashPart[4] );
+		if ( 0 === $light + $medium + $heavy ) {
+			return '';
+		}
+
+		return '<small class="eso-widgets-armor">' . $light . 'L / ' . $medium . 'M / ' . $heavy . 'H</small>';
+	}
+
+	private function getAttributes( $hashPart )
+	{
+		if ( strlen( $hashPart ) < 11 ) {
+			return '';
+		}
+
+		$magicka  = intval( $hashPart[5] . $hashPart[6] );
+		$health = intval( $hashPart[7] . $hashPart[8] );
+		$stamina  = intval( $hashPart[9] . $hashPart[10] );
+		if ( 0 === $magicka + $health + $stamina ) {
+			return '';
+		}
+
+		return '<small class="eso-widgets-attributes">' . $magicka . 'M / ' . $health . 'H / ' . $stamina . 'S</small>';
 	}
 }
