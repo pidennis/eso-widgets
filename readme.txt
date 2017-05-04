@@ -1,8 +1,8 @@
 === ESO Widgets ===
-Tags: elder scrolls, eso, widgets, skyrim
+Tags: elder scrolls, eso, widgets, elder scrolls online, skyrim
 Requires at least: 3.0.0
 Tested up to: 4.7.4
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,17 +18,23 @@ Are you producing content for Elder Scrolls Online? With ESO Widgets you can add
 2. Copy the url and paste it into a single line in your editor (like you would to embed a YouTube video).
 3. Done. You should see the skill bars as a preview in your visual editor, too.
 
-Please make sure to paste the url in a new line and don't convert it to a link. You can check the screenshot section for an example.
+Please make sure to paste the url in a new line and don't make it clickable in your editor. Please check the screenshot section for an example.
 
 = Adding skill tooltips =
 
-This plugin adds the tooltip script used on <a href="http://www.elderscrollsbote.de">ElderScrollsBote.de</a> to your site. The script is loaded asynchronously and is very lightweight (it has no dependencies like jQuery).
+This plugin adds the tooltip script used on <a href="http://www.elderscrollsbote.de">ElderScrollsBote.de</a> to your site. The script is loaded asynchronously and is very lightweight. It has no dependencies like jQuery.
 
 The tooltip script detects every link to a skill from the database of ElderScrollsBote.de and shows the corresponding tooltip on mouseover. To find the url to a specific skill you can use the search form <a href="http://www.elderscrollsbote.de/skills/">here</a>.
 
 = Adding set tooltips =
 
 It's exactly the same as skill tooltips. Every link to a set is detected and shows a tooltip on mouse over. To find the url to a specific set you can use the search form <a href="http://www.elderscrollsbote.de/sets/">here</a>.
+
+= How to open links from skill bars in new tabs? =
+
+The widget provide the tooltips for skill bars by linking to the specific skills. If you want to force them to open in new tabs, just add this snippet to the functions.php of your theme:
+
+add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );
 
 = Is this in German? =
 
@@ -53,6 +59,13 @@ All data is available in English and German. The script detects the browser lang
 Just paste the URL to a <a href="http://www.elderscrollsbote.de/planer/">build planned with this tool</a> into your editor and suprise your visitors with nice skill bars and tooltips directly on your site!
 
 == Changelog ==
+
+= 1.1 =
+
+Release Date: Mai 5th, 2017
+
+* Providing a filter to force all links from skill bars to open in new tabs.
+* The widget now shows the distribution of armor (e.g. 5/1/1) and attribute points (eg. 60/4/0) if available.
 
 = 1.0 =
 
