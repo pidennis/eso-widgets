@@ -89,8 +89,15 @@ final class ESOWidgets
 
 		// Not worth to add the overhead of a language files for this...
 		$lang = ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) ? 'de' : 'en';
-		$caption = ( 'de' === $lang ) ? 'Zeige gesamten Build': 'Show full build';
 		$className = $this->getClassName( $matches[1][1], $lang );
+
+		// You can provide you own caption if you want
+		$caption = trim( apply_filters( 'eso_widgets_show_build_caption', '', $className ) );
+
+		// If there is no caption provided we show the default ones based on the WP language
+		if ( empty( $caption ) ) {
+			$caption = ( 'de' === $lang ) ? 'Zeige gesamten Build' : 'Show full build';
+		}
 
 		$linkTarget = $this->getLinkTarget();
 
