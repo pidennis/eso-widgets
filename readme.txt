@@ -18,7 +18,7 @@ Are you producing content for Elder Scrolls Online? With ESO Widgets you can add
 2. Copy the url and paste it into a single line in your editor (like you would to embed a YouTube video).
 3. Done. You should see the skill bars as a preview in your visual editor, too.
 
-Please make sure to paste the url in a new line and don't make it clickable in your editor. Please check the screenshot section for an example.
+Please make sure to paste the url in a new line and don't make it clickable in your editor. Check the screenshot section for an example.
 
 = Adding skill tooltips =
 
@@ -32,7 +32,7 @@ It's exactly the same as skill tooltips. Every link to a set is detected and sho
 
 = How to open links from skill bars in new tabs? =
 
-The widget provide the tooltips for skill bars by linking to the specific skills. If you want to force them to open in new tabs, just add this snippet to the functions.php of your theme:
+To be able to show skill tooltips for your skill bars the widget has to add a link to the specific skill. You can force these links to open in new tabs by adding this snippet to the functions.php of your theme:
 
 add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );
 

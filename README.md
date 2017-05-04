@@ -1,6 +1,4 @@
-Are you producing content for Elder Scrolls Online on a site powered by WordPress? 
-
-ESO Widgets is a WordPress plugin that allows you to add ingame-like skill and set tooltips to your site. Additionally you can embed skill bars with tooltips directly into your posts.
+_ESO Widgets_ is a WordPress plugin that allows you to add skill and set tooltips from **Elder Scrolls Online** to your site. Additionally you can embed complete skill builds with tooltips directly into your posts. Check <a href="https://ps.w.org/eso-widgets/assets/screenshot-1.png">this screnshot</a> as an example.
 
 **How embedding builds / skill bars work**
 
@@ -8,7 +6,7 @@ ESO Widgets is a WordPress plugin that allows you to add ingame-like skill and s
 2. Copy the url and paste it into a single line in your editor (like you would to embed a YouTube-Video).
 3. Done. You should see the skill bars as a preview in your visual editor, too.
 
-Please make sure to paste the url in a new line and don't convert it to a link. Check <a href="https://ps.w.org/eso-widgets/assets/screenshot-1.png">this screnshot</a> as an example.
+Please make sure to paste the url in a new line and don't convert it to a link.
 
 **How skill tooltips work**
 
@@ -22,7 +20,7 @@ It's exactly the same as skill tooltips. Every link to a set is detected and sho
 
 **How to open links from skill bars in new tabs?**
 
-The widget provide the tooltips for skill bars by linking to the specific skills. If you want to force them to open in new tabs, just add this snippet to the functions.php of your theme:
+To be able to show skill tooltips for your skill bars the widget has to add a link to the specific skill. You can force these links to open in new tabs by adding this snippet to the functions.php of your theme:
 
 `add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );`
 
