@@ -2,7 +2,7 @@
 /*
 Plugin Name: ESO Widgets
 Description: ESO Widgets enables ingame-like tooltips and skill bars for Elder Scrolls Online on your site.
-Version:     1.0
+Version:     1.1
 Author:      ElderScrollsBote.de
 Author URI:  http://www.elderscrollsbote.de/
 License:     GPL2
