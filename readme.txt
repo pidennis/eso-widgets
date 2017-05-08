@@ -62,7 +62,7 @@ Just paste the URL to a <a href="http://www.elderscrollsbote.de/planer/">build p
 
 = 1.1 =
 
-Release Date: Mai 5th, 2017
+Release Date: Mai 8th, 2017
 
 * Providing a filter to force all links from skill bars to open in new tabs.
 * The widget now shows the distribution of armor (e.g. 5/1/1) and attribute points (eg. 60/4/0) if available.
