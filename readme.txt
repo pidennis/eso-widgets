@@ -2,7 +2,7 @@
 Tags: elder scrolls, eso, widgets, elder scrolls online, skyrim
 Requires at least: 3.0.0
 Tested up to: 4.8.0
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,15 @@ All data is available in English and German. The script detects the browser lang
 Just paste the URL to a <a href="http://www.elderscrollsbote.de/planer/">build planned with this tool</a> into your editor and suprise your visitors with nice skill bars and tooltips directly on your site!
 
 == Changelog ==
+
+= 1.2 =
+
+Release Date: June 7th, 2017
+
+* All clicks on skills in skill bars open in new tabs.
+* Removed the filter 'eso_widgets_open_in_new_tabs'.
+* Added support for oEmbed on ElderScrollsBote.de and switched to oEmbed provider to reduce the workload in plugin.
+* Ensured compatibility with WordPress 4.8.
 
 = 1.1 =
 
