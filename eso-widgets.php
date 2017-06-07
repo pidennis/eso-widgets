@@ -37,7 +37,7 @@ final class ESOWidgets
 		add_action( 'wp_head', array( $esowidgets, 'addStyle' ) );
 		add_action( 'admin_init', array( $esowidgets, 'addStyle' ) );
 
-		wp_embed_register_handler( 'eso-widgets-planer', '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-(.*)~', array( $esowidgets, 'embedHandler' ) );
+		wp_oembed_add_provider( '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-.*~i', 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed', true );
 	}
 
 	public function addScript()
@@ -58,121 +58,5 @@ final class ESOWidgets
 			include plugin_dir_path( __FILE__ ) . $fileName;
 			echo '</style>';
 		}
-	}
-
-	public function getLinkTarget()
-	{
-		// You can force all skill links to open in a new tab.
-		// Just add the following line to the functions.php of your theme:
-		// add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );
-
-		if ( apply_filters( 'eso_widgets_open_in_new_tabs', false ) ) {
-			return ' target="_blank"';
-		}
-
-		return '';
-	}
-
-	public function embedHandler( $matches, $attr, $url )
-	{
-		if ( count( $matches ) < 2 ) {
-			return '<p>The build link seems to be incorrect (<a href="' . esc_url( $url ) . '">link</a>).';
-		}
-
-		// Extract selected bar skills
-		$parts        = explode( '-', $matches[1] );
-		$activeSkills = explode( ':', array_pop( $parts ) );
-
-		if ( ! is_array( $activeSkills ) || count( $activeSkills ) !== 12 ) {
-			return '<p>The build link seems to be incomplete (<a href="' . esc_url( $url ) . '">link</a>).';
-		}
-
-		// Not worth to add the overhead of a language files for this...
-		$lang = ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) ? 'de' : 'en';
-		$className = $this->getClassName( $matches[1][1], $lang );
-
-		// You can provide you own caption if you want
-		$caption = trim( apply_filters( 'eso_widgets_show_build_caption', '', $className ) );
-
-		// If there is no caption provided we show the default ones based on the WP language
-		if ( empty( $caption ) ) {
-			$caption = ( 'de' === $lang ) ? 'Zeige gesamten Build' : 'Show full build';
-		}
-
-		$linkTarget = $this->getLinkTarget();
-
-		// If there are points distributed to armor and attributes we will show them
-		$details = $this->getArmor( $matches[1] ) . ' ' . $this->getAttributes( $matches[1] );
-		if ( ! empty( $details ) ) {
-			$details = '<p class="eso-widgets-details">' . $details . '</p>';
-		}
-
-		return '<div class="eso-widgets-build">
-					<p>' . $className . ' <a style="float:right" href="' . esc_url( $url ) . '"' . $linkTarget . '>' . $caption . ' &raquo;</a></p>
-					' . $this->activeSkills2Html( $activeSkills, $linkTarget ) . '
-					' . $details . '
-				</div>';
-	}
-
-	private function activeSkills2Html( array $activeSkills, $linkTarget )
-	{
-		$html = '';
-		for ( $bar = 0; $bar < 2; ++ $bar ) {
-			$html .= '<ul class="eso-widgets-bar">';
-			for ( $slot = 0; $slot < 6; ++ $slot ) {
-
-				$index      = $bar * 6 + $slot;
-				$isUltimate = 0 === ( $index + 1 ) % 6;
-				$skillId    = absint( $activeSkills[ $index ] );
-				$hotkey     = '<span>' . ( $isUltimate ? 'R' : ( $slot + 1 ) ) . '</span>';
-
-				$link = $skillId > 0 ? '<a href="' . esc_url( 'http://www.elderscrollsbote.de/skill=' . $skillId ) . '"' . $linkTarget . '><img src="//www.elderscrollsbote.de/esodb/images/skills/' . $skillId . '.png" alt="Slot ' . ( $slot + 1 ) . '">' . $hotkey . '</a>' : '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="No skill selected">';
-				$html .= '<li' . ( $isUltimate ? ' class="eso-widgets-ultimate"' : '' ) . '>' . $link . '</li>';
-			}
-			$html .= '</ul>';
-		}
-
-		return $html;
-	}
-
-	private function getClassName( $key, $lang )
-	{
-		$classes = 'de' === $lang
-			? array( 'a' => 'Drachenritter', 'b' => 'Nachklinge', 'c' => 'Zauberer', 'd' => 'Templer', 'e' => 'Hüter' )
-			: array( 'a' => 'Dragonknight', 'b' => 'Nightblade', 'c' => 'Sorcerer', 'd' => 'Templar', 'e' => 'Warden' );
-
-		return ( isset( $classes[ $key ] ) ) ? '<em>' . $classes[ $key ] . '</em>' : '';
-	}
-
-	private function getArmor( $hashPart )
-	{
-		if ( strlen( $hashPart ) < 5 ) {
-			return '';
-		}
-
-		$light  = intval( $hashPart[2] );
-		$medium = intval( $hashPart[3] );
-		$heavy  = intval( $hashPart[4] );
-		if ( 0 === $light + $medium + $heavy ) {
-			return '';
-		}
-
-		return '<small class="eso-widgets-armor">' . $light . 'L / ' . $medium . 'M / ' . $heavy . 'H</small>';
-	}
-
-	private function getAttributes( $hashPart )
-	{
-		if ( strlen( $hashPart ) < 11 ) {
-			return '';
-		}
-
-		$magicka  = intval( $hashPart[5] . $hashPart[6] );
-		$health = intval( $hashPart[7] . $hashPart[8] );
-		$stamina  = intval( $hashPart[9] . $hashPart[10] );
-		if ( 0 === $magicka + $health + $stamina ) {
-			return '';
-		}
-
-		return '<small class="eso-widgets-attributes">' . $magicka . 'M / ' . $health . 'H / ' . $stamina . 'S</small>';
 	}
 }
