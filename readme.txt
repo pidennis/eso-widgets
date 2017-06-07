@@ -30,12 +30,6 @@ The tooltip script detects every link to a skill from the database of ElderScrol
 
 It's exactly the same as skill tooltips. Every link to a set is detected and shows a tooltip on mouse over. To find the url to a specific set you can use the search form <a href="http://www.elderscrollsbote.de/sets/">here</a>.
 
-= How to open links from skill bars in new tabs? =
-
-To be able to show skill tooltips for your skill bars the widget has to add a link to the specific skill. You can force these links to open in new tabs by adding this snippet to the functions.php of your theme:
-
-add_filter( 'eso_widgets_open_in_new_tabs', '__return_true' );
-
 = Is this in German? =
 
 All data is available in English and German. The script detects the browser language and shows all tooltips in English by default. You can set localStorage.lang to "en" or "de" to force a specific language on your site, but this shouldn't be neccessary.
