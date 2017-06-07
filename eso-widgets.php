@@ -37,7 +37,14 @@ final class ESOWidgets
 		add_action( 'wp_head', array( $esowidgets, 'addStyle' ) );
 		add_action( 'admin_init', array( $esowidgets, 'addStyle' ) );
 
-		wp_oembed_add_provider( '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-.*~i', 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed', true );
+		$provider = 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed';
+
+		// Sites run in German can request a German translation of the widget
+		if ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) {
+			$provider = add_query_arg( 'lang', 'de', $provider );
+		}
+
+		wp_oembed_add_provider( '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-.*~i', $provider, true );
 	}
 
 	public function addScript()
