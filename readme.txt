@@ -1,7 +1,7 @@
 === ESO Widgets ===
 Tags: elder scrolls, eso, widgets, elder scrolls online, skyrim
 Requires at least: 3.0.0
-Tested up to: 4.8.0
+Tested up to: 4.8.1
 Stable tag: trunk
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
