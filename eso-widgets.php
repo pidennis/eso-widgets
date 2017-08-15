@@ -24,27 +24,32 @@ along with ESO Widgets. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 
 defined( 'ABSPATH' ) || exit;
 
-add_action( 'plugins_loaded', 'ESOWidgets::setup' );
-
 final class ESOWidgets
 {
 	public function __construct() { }
 
-	public static function setup()
+	public static function instance()
 	{
-		$esowidgets = new ESOWidgets();
-		add_action( 'wp_head', array( $esowidgets, 'addScript' ) );
-		add_action( 'wp_head', array( $esowidgets, 'addStyle' ) );
-		add_action( 'admin_init', array( $esowidgets, 'addStyle' ) );
+		static $instance = null;
 
-		$provider = 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed';
+		if ( null === $instance ) {
+			$instance = new ESOWidgets();
 
-		// Sites run in German can request a German translation of the widget
-		if ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) {
-			$provider = add_query_arg( 'lang', 'de', $provider );
+			add_action( 'wp_head', array( $instance, 'addScript' ) );
+			add_action( 'wp_head', array( $instance, 'addStyle' ) );
+			add_action( 'admin_init', array( $instance, 'addStyle' ) );
+
+			$provider = 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed';
+
+			// Sites run in German can request a German translation of the widget
+			if ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) {
+				$provider = add_query_arg( 'lang', 'de', $provider );
+			}
+
+			wp_oembed_add_provider( '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-.*~i', $provider, true );
 		}
 
-		wp_oembed_add_provider( '~https?://(?:www\.)elderscrollsbote\.de/planer/#1-.*~i', $provider, true );
+		return $instance;
 	}
 
 	public function addScript()
@@ -67,3 +72,12 @@ final class ESOWidgets
 		}
 	}
 }
+
+/**
+ * This function returns the true ESOWidgets instance.
+ */
+function esowidgets() {
+	return ESOWidgets::instance();
+}
+
+add_action( 'plugins_loaded', 'esowidgets' );
