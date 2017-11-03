@@ -14,7 +14,7 @@ Are you producing content for Elder Scrolls Online? With ESO Widgets you can add
 
 = Embedding builds / skill bars =
 
-1. Plan your build with this <a href="http://www.elderscrollsbote.de/planer/">Build Planner</a>.
+1. Plan your build with this <a href="https://www.elderscrollsbote.de/planer/">Build Planner</a>.
 2. Copy the url and paste it into a single line in your editor (like you would to embed a YouTube video).
 3. Done. You should see the skill bars as a preview in your visual editor, too.
 
@@ -22,13 +22,13 @@ Please make sure to paste the url in a new line and don't make it clickable in y
 
 = Adding skill tooltips =
 
-This plugin adds the tooltip script used on <a href="http://www.elderscrollsbote.de">ElderScrollsBote.de</a> to your site. The script is loaded asynchronously and is very lightweight. It has no dependencies like jQuery.
+This plugin adds the tooltip script used on <a href="https://www.elderscrollsbote.de">ElderScrollsBote.de</a> to your site. The script is loaded asynchronously and is very lightweight. It has no dependencies like jQuery.
 
-The tooltip script detects every link to a skill from the database of ElderScrollsBote.de and shows the corresponding tooltip on mouseover. To find the url to a specific skill you can use the search form <a href="http://www.elderscrollsbote.de/skills/">here</a>.
+The tooltip script detects every link to a skill from the database of ElderScrollsBote.de and shows the corresponding tooltip on mouseover. To find the url to a specific skill you can use the search form <a href="https://www.elderscrollsbote.de/skills/">here</a>.
 
 = Adding set tooltips =
 
-It's exactly the same as skill tooltips. Every link to a set is detected and shows a tooltip on mouse over. To find the url to a specific set you can use the search form <a href="http://www.elderscrollsbote.de/sets/">here</a>.
+It's exactly the same as skill tooltips. Every link to a set is detected and shows a tooltip on mouse over. To find the url to a specific set you can use the search form <a href="https://www.elderscrollsbote.de/sets/">here</a>.
 
 = Is this in German? =
 
@@ -50,7 +50,7 @@ All data is available in English and German. The script detects the browser lang
 
 == Screenshots ==
 
-Just paste the URL to a <a href="http://www.elderscrollsbote.de/planer/">build planned with this tool</a> into your editor and suprise your visitors with nice skill bars and tooltips directly on your site!
+Just paste the URL to a <a href="https://www.elderscrollsbote.de/planer/">build planned with this tool</a> into your editor and suprise your visitors with nice skill bars and tooltips directly on your site!
 
 == Changelog ==
 
