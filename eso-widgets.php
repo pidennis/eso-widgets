@@ -39,7 +39,7 @@ final class ESOWidgets
 			add_action( 'wp_head', array( $instance, 'addStyle' ) );
 			add_action( 'admin_init', array( $instance, 'addStyle' ) );
 
-			$provider = 'http://www.elderscrollsbote.de/wp-json/oembed/1.0/embed';
+			$provider = 'https://www.elderscrollsbote.de/wp-json/oembed/1.0/embed';
 
 			// Sites run in German can request a German translation of the widget
 			if ( 'de' === substr( trim( get_locale() ), 0, 2 ) ) {
@@ -55,7 +55,7 @@ final class ESOWidgets
 	public function addScript()
 	{
 		// Limit browser side caching to max two days
-		echo '<script async src="' . esc_url( '//www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . strtotime( 'tomorrow 23:59' ) ) . '"></script>';
+		echo '<script async src="' . esc_url( 'https://www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . strtotime( 'tomorrow 23:59' ) ) . '"></script>';
 	}
 
 	public function addStyle()
