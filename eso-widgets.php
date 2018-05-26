@@ -2,9 +2,9 @@
 /*
 Plugin Name: ESO Widgets
 Description: ESO Widgets enables ingame-like tooltips and skill bars for Elder Scrolls Online on your site.
-Version:     1.2
+Version:     1.3
 Author:      ElderScrollsBote.de
-Author URI:  http://www.elderscrollsbote.de/
+Author URI:  https://www.elderscrollsbote.de/
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,8 +54,8 @@ final class ESOWidgets
 
 	public function addScript()
 	{
-		// Limit browser side caching to max one week
-		echo '<script async src="' . esc_url( 'https://www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . date( 'YW' ) ) . '"></script>';
+		// Limit browser side caching
+		echo '<script async src="' . esc_url( 'https://www.elderscrollsbote.de/esodb/tooltips.js?_ts=' . date( 'Ymd' ) ) . '"></script>';
 	}
 
 	public function addStyle()
