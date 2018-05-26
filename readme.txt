@@ -54,6 +54,15 @@ Just paste the URL to a <a href="https://www.elderscrollsbote.de/planer/">build 
 
 == Changelog ==
 
+= 1.3 =
+
+Release Date: Mai 26th, 2018
+
+* Optimized browser caching of the tooltip script.
+* Always use https even if you run a http site.
+* Visual enhancements for attributes and armor choices.
+* Ensured compatibility with WordPress 4.9.6.
+
 = 1.2 =
 
 Release Date: June 7th, 2017
